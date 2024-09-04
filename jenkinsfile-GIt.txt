@@ -9,6 +9,13 @@ pipeline {
                     // Example: sh 'mvn clean package'
                 }
             }
+            post{
+                success{
+                    mail to: "adesolaadekunle71@gmail.com",
+                    subject: "Build Status Email",
+                    body: "Build was successful!"
+                }
+            }
         }
 
         stage('Unit and Integration Tests') {
