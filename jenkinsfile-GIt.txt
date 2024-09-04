@@ -9,13 +9,7 @@ pipeline {
                     // Example: sh 'mvn clean package'
                 }
             }
-            post{
-                success{
-                    mail to: "adesolaadekunle71@gmail.com",
-                    subject: "Build Status Email",
-                    body: "Build was successful!"
-                }
-            }
+            
         }
 
         stage('Unit and Integration Tests') {
@@ -23,6 +17,13 @@ pipeline {
                 script {
                     echo 'Running unit and integration tests using JUnit...'
                     // Example: sh 'mvn test'
+                }
+            }
+            post{
+                success{
+                    mail to: "adesolaadekunle71@gmail.com",
+                    subject: "Unit and Integration Tests Status Email",
+                    body: "Unit testing and integration using JUnit was successful!"
                 }
             }
         }
@@ -41,6 +42,13 @@ pipeline {
                 script {
                     echo 'Performing security scan using OWASP ZAP...'
                     // Example: sh 'zap-cli start && zap-cli quick-scan http://localhost:8080'
+                }
+            }
+            post{
+                success{
+                    mail to: "adesolaadekunle71@gmail.com",
+                    subject: "Security Scan Email",
+                    body: "Security scan was successful!"
                 }
             }
         }
