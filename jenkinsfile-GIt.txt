@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the code using Maven...'
-                    // Example: sh 'mvn clean package'
+                    
                 }
             }
             
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running unit and integration tests using JUnit...'
-                    // Example: sh 'mvn test'
+                    
                 }
             }
             post{
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     echo 'Analyzing code using SonarQube...'
-                    // Example: sh 'mvn sonar:sonar'
+                    
                 }
             }
         }
@@ -41,14 +41,16 @@ pipeline {
             steps {
                 script {
                     echo 'Performing security scan using OWASP ZAP...'
-                    // Example: sh 'zap-cli start && zap-cli quick-scan http://localhost:8080'
+                   
                 }
             }
             post{
                 success{
+                    emailext attachLog: true,
                     mail to: "adesolaadekunle71@gmail.com",
                     subject: "Security Scan Email",
                     body: "Security scan was successful!"
+                    
                 }
             }
         }
@@ -57,7 +59,7 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to staging server...'
-                    // Example: sh 'scp target/myapp.jar user@staging-server:/path/to/deploy'
+                    
                 }
             }
         }
@@ -66,7 +68,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running integration tests on staging...'
-                    // Example: sh 'mvn verify -Pstaging'
+                   
                 }
             }
         }
@@ -75,7 +77,7 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to production server...'
-                    // Example: sh 'scp target/myapp.jar user@prod-server:/path/to/deploy'
+                    
                 }
             }
         }
